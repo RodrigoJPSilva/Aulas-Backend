@@ -18,8 +18,8 @@ public class Funcionario {
         return salario;
     }
 
-    public void setSalario(Double salario) {
-        this.salario = salario;
+    public double calculoSalario(double salario) {
+        return salario = salario - 100;
     }
 
     public String getRg() {

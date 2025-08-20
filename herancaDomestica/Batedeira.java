@@ -1,17 +1,17 @@
 package herancaDomestica;
 
-public class Batedeira {
-    private int numCrea;
+public class Batedeira extends Eletrodomestico {
+    private int velocidade;
 
-    public Batedeira(String nome, String cor, int tensao, Double preco, int numCrea) {
-        super(nome, cor, tensao, preco, numCrea);
-        this.numCrea = numCrea;
+    public Batedeira(String nome, String cor, int tensao, Double preco, int velocidade) {
+        super(nome, cor, tensao, preco);
+        this.velocidade = velocidade;
     }
-    public int getNumCrea() {
-        return numCrea;
+    public int getVelocidade() {
+        return velocidade;
     }
 
-    public void setNumCrea(int numCrea) {
-        this.numCrea = numCrea;
+    public void setVelocidade(int velocidade) {
+        this.velocidade = velocidade;
     }
 }
