@@ -3,7 +3,7 @@ package situacaoProblema;
 public class Livro implements Emprestavel{
     private String titulo;
     private String autor;
-    private boolean status;
+    private boolean status = false;
 
     public Livro(String titulo, String autor, boolean status) {
         super();
@@ -34,21 +34,13 @@ public class Livro implements Emprestavel{
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-    public void emprestar() {
-
-    }
-    public void devolve() {
-
-    }
-
     @Override
     public void emprestar(Usuario u) {
-
+        status = true;
     }
 
     @Override
     public void devolver() {
-
+        status = false;
     }
 }

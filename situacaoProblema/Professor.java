@@ -1,6 +1,6 @@
 package situacaoProblema;
 
-public class Professor implements Emprestavel{
+public class Professor extends Usuario implements Emprestavel{
     @Override
     public void emprestar(Usuario u) {
 
@@ -8,6 +8,11 @@ public class Professor implements Emprestavel{
 
     @Override
     public void devolver() {
+
+    }
+
+    @Override
+    public void getLimiteEmprestimos() {
 
     }
 }
