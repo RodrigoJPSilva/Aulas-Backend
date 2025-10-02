@@ -1,4 +1,4 @@
-package jpa.ToDoList.entity;
+package ToDoList.src.main.java.jpa.ToDoList.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
