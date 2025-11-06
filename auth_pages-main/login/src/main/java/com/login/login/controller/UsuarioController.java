@@ -1,5 +1,7 @@
 package com.login.login.controller;
 
+import com.login.login.dto.UsuarioRequestDTO;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +23,7 @@ public class UsuarioController {
     UsuarioRepository usuarioRepository;
 
     @PostMapping(value = "usuario/cadastro")
-    public ResponseEntity<?> saveUser(@RequestBody Usuario user) {
+    public ResponseEntity<?> saveUser(@Valid @RequestBody UsuarioRequestDTO user) {
         Usuario usuario = new Usuario(user.getName(), user.getEmail(), user.getPassword());
         usuarioRepository.save(usuario);
         return ResponseEntity.ok("O usuário foi cadastrado com sucesso!");

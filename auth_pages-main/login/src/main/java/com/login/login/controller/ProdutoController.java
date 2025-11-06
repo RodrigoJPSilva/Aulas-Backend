@@ -1,7 +1,9 @@
 package com.login.login.controller;
 
+import com.login.login.dto.ProdutoRequestDTO;
 import com.login.login.entity.Produto;
 import com.login.login.repository.ProdutoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,9 +58,9 @@ public class ProdutoController {
         }
     }
     @PostMapping(value = "/cadastro")
-    public ResponseEntity<?> saveProduct(@RequestBody Produto product) {
+    public ResponseEntity<?> saveProduct(@Valid @RequestBody ProdutoRequestDTO product) {
         Produto produto = new Produto(product.getName(), product.getPrice(), product.getQuantity());
-        produtoRepository.save(product);
+        produtoRepository.save(produto);
         return ResponseEntity.ok("O produto foi cadastrado com sucesso!");
     }
 }
