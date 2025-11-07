@@ -1,6 +1,7 @@
 package com.login.login.controller;
 
 import com.login.login.dto.UsuarioRequestDTO;
+import com.login.login.dto.UsuarioResponseDTO;
 import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import com.login.login.entity.Usuario;
 import com.login.login.repository.UsuarioRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +32,7 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "login")
-    public ResponseEntity<?> login(@RequestBody Usuario user) {
+    public ResponseEntity<?> login(@Valid @RequestBody UsuarioRequestDTO user) {
 
         Usuario findUser = usuarioRepository.findByEmail(user.getEmail());
         if (findUser == null) {
@@ -45,8 +47,13 @@ public class UsuarioController {
     }
 
     @GetMapping(value = "Rodrigo")
-    public List<Usuario> listaDeUsuarios() {
-        List<Usuario> listarUsuarios = usuarioRepository.findAll();
+    public List<UsuarioResponseDTO> listaDeUsuarios() {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        List<UsuarioResponseDTO> listarUsuarios = new ArrayList<>();
+//        for (Usuario usuario : usuarios) {
+//            listarUsuarios.add(new UsuarioResponseDTO(usuario));
+//        }
+        listarUsuarios = usuarios.stream().map(UsuarioResponseDTO::new).toList();
         return listarUsuarios;
     }
 
@@ -59,7 +66,6 @@ public class UsuarioController {
     public Optional<Usuario> usuarioPorId(@PathVariable int id) {
         return usuarioRepository.findById(id);
     }
-
     @DeleteMapping(value = "del/{id}")
     public ResponseEntity<String> deletarPorId(@PathVariable int id) {
         if (usuarioRepository.existsById(id)) {

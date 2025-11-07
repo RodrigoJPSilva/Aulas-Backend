@@ -1,6 +1,8 @@
 package com.login.login.controller;
 
 import com.login.login.dto.ProdutoRequestDTO;
+import com.login.login.dto.ProdutoResponseDTO;
+import com.login.login.dto.UsuarioResponseDTO;
 import com.login.login.entity.Produto;
 import com.login.login.repository.ProdutoRepository;
 import jakarta.validation.Valid;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +26,6 @@ public class ProdutoController {
     public ResponseEntity<?> buscarId(@PathVariable int id) {
 
         Optional<Produto> produto = produtoRepository.findById(id);
-
         if (produto.isPresent()) {
             return ResponseEntity.ok(produto);
         } else {
@@ -32,8 +34,11 @@ public class ProdutoController {
     }
 
     @GetMapping("/all")
-    public List<Produto> buscarTodosId() {
-        return produtoRepository.findAll();
+    public List<ProdutoResponseDTO> buscarTodosId() {
+        List<Produto> produto = produtoRepository.findAll();
+        List<ProdutoResponseDTO> listarProdutos = new ArrayList<>();
+        listarProdutos = produto.stream().map(ProdutoResponseDTO::new).toList();
+        return listarProdutos;
     }
     @PutMapping("/{id}")
     public ResponseEntity<Produto> atualizar (@PathVariable int id, @RequestBody Produto novoProduto) {

@@ -6,21 +6,22 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class UsuarioRequestDTO {
-    @NotNull(message = "O nome não pode ser nulo")
+    @NotNull(message = "O usuario não pode ser nulo")
     private String name;
 
-    @NotBlank(message = " você ta cagando")
+    @NotBlank(message = "O email não pode estar vazio")
     private String email;
+
+    @NotBlank(message = "O produto precisa ter uma quantidade")
     @Size(min = 6, max = 20, message = "A senha deve ter entre 6 e 20 caracteres")
     private String password;
 
-    public UsuarioRequestDTO() {
+
+        public UsuarioRequestDTO(Usuario user) {
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
     }
-//    public UsuarioRequestDTO(Usuario user) {
-//        this.name = user.getName();
-//        this.email = user.getEmail();
-//        this.password = user.getPassword();
-//    }
     public UsuarioRequestDTO(String password, String email, String name) {
         this.password = password;
         this.email = email;

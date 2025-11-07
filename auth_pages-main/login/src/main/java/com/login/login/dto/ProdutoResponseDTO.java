@@ -1,48 +1,33 @@
 package com.login.login.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import com.login.login.entity.Produto;
 
 public class ProdutoResponseDTO {
-    @NotBlank(message = "O produto não pode ser nulo")
     private String name;
-
-    @NotNull(message = "O preço não pode estar vazio")
     private double price;
-
-    @NotNull(message = "O produto precisa ter uma quantidade")
     private int quantity;
+    private double subtotal;
 
-    public ProdutoResponseDTO() {
-    }
-
-    public ProdutoResponseDTO(String name, double price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
+    public ProdutoResponseDTO(Produto product) {
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.quantity = product.getQuantity();
+        this.subtotal = quantity * price;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getPrice() {
         return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public double getSubtotal() {
+        return subtotal;
     }
 }
