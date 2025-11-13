@@ -17,11 +17,11 @@ public class UsuarioRequestDTO {
     private String password;
 
 
-        public UsuarioRequestDTO(Usuario user) {
-        this.name = user.getName();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-    }
+//        public UsuarioRequestDTO(Usuario user) {
+//        this.name = user.getName();
+//        this.email = user.getEmail();
+//        this.password = user.getPassword();
+//    }
     public UsuarioRequestDTO(String password, String email, String name) {
         this.password = password;
         this.email = email;
